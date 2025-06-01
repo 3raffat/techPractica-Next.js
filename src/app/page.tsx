@@ -3,58 +3,28 @@ import Image from "next/image";
 import CookiesService from "../../service";
 import { categories, features } from "../../data/data";
 import { useRouter } from "next/navigation";
+import Left from "../../public/left-side.png";
+import Right from "../../public/right-side.png";
+
 export default function Home() {
   const token = CookiesService.get("UserToken");
   const txt = token ? "Start Learning" : "Get Started";
   const route = useRouter();
-  // Animation variants
-  const container = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1,
-        when: "beforeChildren",
-      },
-    },
-  };
-
-  const fadeInUp = {
-    hidden: { opacity: 0, y: 20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.6,
-        ease: [0.25, 0.1, 0.25, 1],
-      },
-    },
-  };
-
-  const fadeInScale = {
-    hidden: { opacity: 0, scale: 0.95 },
-    visible: {
-      opacity: 1,
-      scale: 1,
-      transition: {
-        duration: 0.5,
-        ease: "backOut",
-      },
-    },
-  };
 
   return (
     <div className="overflow-hidden">
       {/* HERO SECTION */}
       <section className="relative bg-gradient-to-br from-[#f0fdf9] via-[#f8fafc] to-[#e0f2fe] h-[700px] flex items-center justify-center px-6">
         <div className="absolute inset-0 overflow-hidden">
-          <img
-            src="/src/assets/left-side.png"
+          <Image
+            src={Left}
+            width={500}
             alt="Tech Logos"
             className="absolute left-0 top-0 h-full opacity-80 lg:opacity-100 object-cover hidden lg:block filter brightness-105 contrast-105"
           />
-          <img
-            src="/src/assets/right-side.png"
+          <Image
+            src={Right}
+            width={500}
             alt="Tech Logos"
             className="absolute right-0 top-0 h-full opacity-80 lg:opacity-100 object-cover hidden lg:block filter brightness-105 contrast-105"
           />
